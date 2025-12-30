@@ -54,3 +54,5 @@ I mainly learned [C](https://www.learn-c.org/) and [Python](https://www.python.o
 
 ## games-pc
 TODO
+
+This is a test. Written in Copyparty

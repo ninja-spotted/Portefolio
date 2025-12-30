@@ -56,4 +56,3 @@ I mainly learned [C](https://www.learn-c.org/) and [Python](https://www.python.o
 TODO
 
 This is a test. Written in Copyparty
-Now this is using the web interface + hooks

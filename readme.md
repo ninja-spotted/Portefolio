@@ -57,3 +57,5 @@ TODO
 
 This is a test. Written in Copyparty
 Now this is using the web interface + hooks
+
+This is from the mini pc via ssh, for testing the hook

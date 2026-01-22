@@ -3,6 +3,8 @@ title:  "Trying to blog"
 parent: Blog
 permalink: "/blog/trying-to-blog"
 layout: default
+date:   2026-01-22
+last_modified_date: 2026-01-22
 ---
 
 
@@ -11,5 +13,3 @@ Planning to have a regular uploading scheduling, but I will not make any promiss
 
 Anywho: are blog posts supposed to be written once and only rarely updated?
 
-date:   2026-01-22
-last_modified_date: 2026-01-22

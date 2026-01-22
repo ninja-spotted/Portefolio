@@ -1,8 +1,8 @@
 ---
-layout: default
 title: Blog
 permalink: "/blog/"
 has_children: true
+layout: default
 ---
 
 # Blog

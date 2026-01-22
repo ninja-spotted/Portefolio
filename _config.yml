@@ -1,11 +1,11 @@
 navigation:                # accepts {file, title, url, icon, sidebaricon}
-  - {file: "markdown/readme.md", title: "Markdown"}
-  - {file: "README.md", title: "About"}
-  - {file: "rust/readme.md", title: "Rust"}
-  - {file: "pixelart/readme.md", title: "Pixel Art"}
-  - {file: "IED/readme.md", title: "ESP32 as IED"}
+  - {file: "markdown/readme.md",              title: "Markdown"}
+  - {file: "README.md",                       title: "About"}
+  - {file: "rust/readme.md",                  title: "Rust"}
+  - {file: "pixelart/readme.md",              title: "Pixel Art"}
+  - {file: "IED/readme.md",                   title: "ESP32 as IED"}
   - {file: "computer_architecture/readme.md", title: "Computer Architecture"}
-  - {url: "/Portefolio/unthemed.html", title: "Unthemed"}
+  - {url:  "/Portefolio/unthemed.html",       title: "Unthemed"}
 
 # Footer last edited timestamp
 last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
@@ -22,5 +22,4 @@ aux_links:
     - "https://overthewire.org/wargames/bandit/bandit0.html"
 
 remote_theme: just-the-docs/just-the-docs
-#remote_theme: 
 color_scheme: dark

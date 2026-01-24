@@ -1,11 +1,11 @@
 navigation:                # accepts {file, title, url, icon, sidebaricon}
   - {file: "markdown/readme.md",              title: "Markdown"}
-  - {file: "about.md",                       title: "About"}
+  - {file: "about.md",                        title: "About"}
   - {file: "rust/readme.md",                  title: "Rust"}
   - {file: "pixelart/readme.md",              title: "Pixel Art"}
   - {file: "IED/readme.md",                   title: "ESP32 as IED"}
   - {file: "computer_architecture/readme.md", title: "Computer Architecture"}
-  - {file: "blog/blog.md",                  title: "Blog"}
+  - {file: "blog/blog.md",                    title: "Blog"}
   - {url:  "/Portefolio/unthemed.html",       title: "Unthemed"}
 
 # Footer last edited timestamp

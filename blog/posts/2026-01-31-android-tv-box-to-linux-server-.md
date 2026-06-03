@@ -52,7 +52,7 @@ Among these OS were **Libreelec**, a media player focused OS and **Armbian** (Li
 
 ### Libreelec
 
-The first OS that I tried to use on the Beelink GT1 was Libreelec, which according to its wiki page identifies itself as:
+The first OS that I tried to use on the Beelink GT1 was [Libreelec](https://libreelec.tv/), which according to its wiki page identifies itself as:
 > (...) a minimalist 'Just enough OS' Linux distribution for running Kodi
 
 This seemed like a nice way to use the TV box, since initialy I didn't want to change it's function, and so I wanted to have it connected to the TV and be a media box.
@@ -70,38 +70,85 @@ After connecting power while having the reset button pressed, the system turned 
 
 However, it seems that most of my excitement was quickly shut down when I realized there were few apps (plugins) that I was interested in and that actually worked. Youtube plugins require a key linked to an youtube account to use them (which I was not interested in) and I found the interface hard to navigate and not as enjoyable to use, since everything felt slow.
 
-Some other video providers (LBRY or Peertube) worked with their plugins but there was constant loading during browsing. Even worse, the content had some weird/suggestive NSFW thumbnails with unrelated titles for some videos, which I found repulsing.
+Some other video providers ([LBRY](https://lbry.com/) or [Peertube](https://joinpeertube.org/)) worked with their plugins but there was constant loading during browsing. Even worse, the content had some weird/suggestive NSFW thumbnails with unrelated titles for some videos, which I found repulsing.
 
 Some instances of Peertube had linux content, even from creators I follow in Youtube, and seem ok in terms of content, but the loading and seeking ahead in the video would get stuck in a single frame and not load even after some minutes of waiting.
 
-![alt text](images/libreelec_specifications.png)
+![Libreelec Specifications](images/libreelec_specifications.png)
 
 I also experimented with TV channels, but the most I was able to do was watch a Demo TV channel, which played a Big Buck Bunny video, and while it was smooth while playing it was getting constantly interrupted to buffer (network or video processing?).
 
-![alt text](images/big_buck_bunny.png)
+![Big Buck Bunny](images/big_buck_bunny.png)
 
 Aside from video, I experimented with other plugins just for curiosity and found a terrible way to read wikipedia articles via its plugin:
 
-![alt text](images/wikipedia_article.png)
+![Wikipedia article](images/wikipedia_article.png)
 
 Finally, I found that Libreelec was not for me and it was time to move on.
 
 ### Armbian
 
-At the time, I was thinking that Armbian would be the last opportunity to have the TV box do something useful. It could be used as a simple file server or DNS ad-blocker, and probably pretty efficient.
+At the time, I was thinking that [Armbian](https://armbian.com/) would be the last opportunity to have the TV box do something useful. It could be used as a simple file server or DNS ad-blocker, and probably pretty efficient.
 
 For trying out Armbian, I was guided by the following pages:
 - [sigmdel.ca/michel: linux on aml912](https://sigmdel.ca/michel/ha/aml912/linux_on_aml912_en.html#hardware)
 - [i12bretro: Installing Armbian on Amlogic S912 Android TV Box (Tanix TX9s)](https://i12bretro.github.io/tutorials/0094.html)
 - [Armbian forum:  Installation Instructions for TV Boxes with Amlogic CPUs](https://forum.armbian.com/topic/33676-installation-instructions-for-tv-boxes-with-amlogic-cpus)
 
+I downloaded an image for my board from the armbian website and then flashed it into an USB drive. Next, I mounted the BOOT partition and changed some things:
+
+> nano extlinux/extlinux.conf.bak
+
+    label Armbian
+    kernel /zImage
+    initrd /uInitrd
+    fdt /dtb/amlogic/meson-gxm-beelink-gt1.dtb
+    append root=UUID=d7438465-50f5-4136-bbca-72deb63e37d2 rootflags=data=writeback rw rootfstype=ext4 console=ttyAML0,115200n8 console=tty0 no_console_suspend consoleblank=0 fsck.fix=yes fsck.repair=yes net.ifnames=0 loglevel=1 voutmode=hdmi disablehpd=false overscan=100 sdrmode=auto
+
+> nano uEnv.txt
+
+    LINUX=/zImage
+    INITRD=/uInitrd
+    FDT=/dtb/amlogic/meson-gxm-beelink-gt1.dtb
+    APPEND=root=UUID=f9a4ae8c-c557-4163-bfec-3b00a35a4f86 rootflags=data=writeback rw rootfstype=ext4 console=ttyAML0,115200n8 console=tty0 no_console_suspend consoleblank=0 fsck.fix=yes fsck.repair=yes net.ifnames=0 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory swapaccount=1
+
+
+I still have to try to install and run the armbian image with a desktop environment available here https://armbian.com/boards/aml-s9xx-box
+
 #### USB booting
 
-TODO
+Performing the same steps as when trying out Libreelec, we can boot to Armbian via USB by powering up the TV box while holding the reset button. After a while, we are met with this screen:
 
-#### Installing to internal storage
+![Booting into Armbian](images/armbian_unofficial.png)
 
-TODO
+After this, it will prompt us to create a root password
+
+#### Moving the image to the internal eMMC
+
+For this, we start by backing up the eMMC flash memory before overwriting it (following [this chapter](https://sigmdel.ca/michel/ha/aml912/linux_on_aml912_en.html#backup_sd_image)):
+
+    lsblk
+    sudo umount /dev/sda1
+    sudo dd if=/dev/sde of=armbian_22.08_backup3.img bs=512 count=6291456 status=progress
+
+To expand the USB partition (and copy the eMMC backup to there), use the Partition Expansion Tool
+
+    sudo armbian-tf
+
+After this, we can perform the eMMC backup using the eMMC system backup/restore service:
+
+    sudo ddbr
+
+A backup with the name BACKUP-arm-64-emmc.img.gz was created.
+
+And then install Armbian to the eMMC:
+
+    sudo armbian-install
+
+After this, we poweroff, remove the USB drive and start the Beelink GT1 again. For curiosity, here is the fastfetch of the system after installation!
+
+![alt text](images/fastfetch_armbian.png)
+
 
 #### General use
 

@@ -4,7 +4,7 @@ parent: Blog
 permalink: "/blog/open-source-fpga-toolchain"
 layout: default
 date:   2026-08-12
-last_modified_date: 2026-08-13
+last_modified_date: 2026-08-23
 ---
 
 # Open-source FPGA toolchain
@@ -23,7 +23,7 @@ I followed the guide from [Lushay Labs - Tang Nano 9K: Getting Setup](https://le
 
 Basically, after installing VS Code, the extension/plugin "Lushay Code" is responsible for hooking up VS Code to the actual open-source FPGA toolchain used to synthetise the bitstream for the FPGA in question. It also recommends the instalation of a HDL syntax highlighter and WaveTrace, a plugin for built in waveform viewing for debug.
 
-The most important part of the puzzle is the [OSS-Cad-Suite](https://github.com/YosysHQ/oss-cad-suite-build/). It can simply be downloaded from the releases page of github and extracted to a known folder.
+The most important part of the puzzle is the [OSS-Cad-Suite](https://github.com/YosysHQ/oss-cad-suite-build/). This will be our toolchain to do synthesis of the FPGA program. It can simply be downloaded from the releases page of github and extracted to a known folder.
 
 In VS Code, after installing the "Lushay Code" plugin, I was presented with the bottom right "FPGA Toolchain" which allowed me to link the path that I downloaded and extracted the OSS-Cad-Suite to.
 
@@ -86,7 +86,7 @@ There are basically 3 commands I will be using:
     Uploads the bitstream to the flash memory (non-volatile memory) of FPGA board.
 
 - `openFPGALoader -b tangnano9k led.fs`  
-    Uploads the bitstream to the RAM (volatile memory) of FPGA board.
+    Uploads the bitstream to the SRAM (volatile memory) of FPGA board.
 
 ### Conclusion
 
@@ -96,8 +96,6 @@ If you still want to use the Gowin IDE, have a look at [this blog post](https://
 
 I will mostly be using the following material to keep up my FPGA knowledge:
 
-https://wiki.sipeed.com/hardware/en/tang/Tang-Nano-9K/Nano-9K.html
-
-https://github.com/sipeed/TangNano-9K-example/
-
-https://github.com/BrunoLevy/learn-fpga
+[https://wiki.sipeed.com/hardware/en/tang/Tang-Nano-9K/Nano-9K.html](https://wiki.sipeed.com/hardware/en/tang/Tang-Nano-9K/Nano-9K.html)
+[https://github.com/sipeed/TangNano-9K-example/](https://github.com/sipeed/TangNano-9K-example/)
+[https://github.com/BrunoLevy/learn-fpga](https://github.com/BrunoLevy/learn-fpga)

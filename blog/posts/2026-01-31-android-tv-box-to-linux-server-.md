@@ -157,3 +157,7 @@ TODO
 #### Benchmarks
 
 TODO
+
+Other links I might have to take a look at:
+https://forum.armbian.com/topic/33676-installation-instructions-for-tv-boxes-with-amlogic-cpus
+https://github.com/ophub/amlogic-s9xxx-armbian/tree/main/build-armbian
